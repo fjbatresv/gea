@@ -1,0 +1,17 @@
+GEASoporteBundle_admin_javier_soporte_bundle_Perfil:
+    resource: "@GEASoporteBundle/Controller/Perfil/"
+    type:     admingenerator
+    prefix:   /admin/perfil/
+    
+menu_perfil:
+    path: /admin/perfil/menus/{pk}/
+    defaults: {_controller: "GEASoporteBundle:Perfil:menu"}
+
+GEASoporteBundle_admin_javier_soporte_bundle_Usuario:
+    resource: "@GEASoporteBundle/Controller/Usuario/"
+    type:     admingenerator
+    prefix:   /admin/usuario/
+    
+editar_perfiles_usuario:
+    path: /admin/usuario/perfil/
+    defaults: { _controller: GEASoporteBundle:Usuario:editarPerfil }
