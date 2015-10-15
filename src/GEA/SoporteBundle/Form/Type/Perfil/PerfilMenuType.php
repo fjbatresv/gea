@@ -16,7 +16,7 @@ class PerfilMenuType extends BaseAbstractType {
             'multiple' => true,
             'expanded' => true,
             'query' => MenuQuery::create()->where('mostrar = 1'),
-            'required' => false
+            'required' => false,
         ));
     }
 

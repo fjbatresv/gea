@@ -1,85 +1,73 @@
 {%extends '::base.html.twig' %}
 {% block extraScripts %}
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-<script src="{{asset('assets/js/jquery.tree.js')}}"></script>
-
+    <script src="{{asset('/plugins/jstree/js/jstree.min.js')}}"></script>
+    <script type="text/javascript">
+        
+    </script>
 {% endblock %}
 {% block extraCSS %}
-<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css"/>
-<link rel="stylesheet" href="{{asset('assets/css/jquery.tree.css')}}"/> 
+    <link rel="stylesheet" href="{{asset('/plugins/jstree/css/style.min.css')}}"/> 
 {%  endblock%}
 {%block body%}
-<script type="text/javascript">
-    $(document).ready(function() {
-        $(document).find('.lista').each(function() {
-            $(this).tree({
-            });
-        });
-    });
-</script>
-<div class="panel panel-default panel-info" data-collapsed="0">
-    <div class="panel-heading">
-        <div class="panel-title">
-            <i class="fa fa-reorder"></i>Editar menús de perfil
-        </div>
-    </div>
-    <div class="panel-body form">
-        <!-- BEGIN FORM-->
-        <form class="form-horizontal" id="form" method="POST" action="{{ path ('menu_perfil', {pk : pk})}}" {{ form_enctype(form) }} novalidate >
-            <div class="form-body">
-                    {% set contador = 0 %}
-                        {%for menu in menus%}
-                        {%if menu.superior == 0%}
-                    {% if contador == 0 %}
-                    <div class="row">
-                        {% endif %}
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="col-md-1"></label>
-                                <div class="col-md-11">
-                                    <div class="lista">
-                                        <ul>
-                                            <li>{{form_widget(form.Menu[menu.id], {'attr' : { 'class'  : ''} })}}&nbsp;{{form_label(form.Menu[menu.id])}}
-                                                <ul>
-                                    {%for menuInferior in menus%}
-                                    {%if menuInferior.superior == menu.id%}
-                                                    <li>{{form_widget(form.Menu[menuInferior.id])}}&nbsp;{{form_label(form.Menu[menuInferior.id])}}
-                                    {%endif%}
-                                    {%endfor%}
-                                                </ul>
-                                        </ul>
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Editar menús del perfil "{{ perfil.nombre }}"</h3>
+        </div><!-- /.box-header -->
+        <!-- form start -->
+        <form id="form" class="form-horizontal" role="form" method="POST" action="{{ path ('menu_perfil', {pk : perfil.id})}}" {{ form_enctype(form) }}>
+            <div class="box-body">
+                {% set contador = 0 %}
+                {%for menu in menus%}
+                    {%if menu.superior == 0%}
+                        {% if contador == 0 %}
+                            <div class="row">
+                            {% endif %}
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-1"></label>
+                                    <div class="col-md-11">
+                                        <div class="lista demo">
+                                            <ul>
+                                                <li data-jstree='{ "opened" : true }' >{{form_widget(form.Menu[menu.id], {'attr' : { 'class'  : ''} })}}&nbsp;{{form_label(form.Menu[menu.id])}}
+                                                    <ul>
+                                                        {%for menuInferior in menus%}
+                                                            {%if menuInferior.superior == menu.id%}
+                                                                <li>{{form_widget(form.Menu[menuInferior.id])}}&nbsp;{{form_label(form.Menu[menuInferior.id])}}
+                                                                {%endif%}
+                                                            {%endfor%}
+                                                    </ul>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        {% set contador = contador+ 1 %}
-                        {% if contador == 3 %}
-                    </div>
-                    <br />
-                    {% set contador = 0 %}
+                            {% set contador = contador+ 1 %}
+                            {% if contador == 3 %}
+                            </div>
+                            <br />
+                            {% set contador = 0 %}
                         {% endif %}
-                        {%endif%}
-                    {%endfor%}
-                    {% if contador != 0%}
-                    </div>
-                        {% endif %}
-                {{form_widget(form.Menu)}}
-                {{ form_rest(form) }}
-            </div>
-    <div class="form-actions fluid">
+                    {%endif%}
+                {%endfor%}
+                {% if contador != 0%}
+                </div>
+            {% endif %}
+            {{form_widget(form.Menu)}}
+            {{ form_rest(form) }}
+    </div><!-- /.box-body -->
+
+    <div class="box-footer">
         <div class="col-md-offset-3 col-md-9">
             <input type="submit" style="visibility: collapse"/>
-            <a class="btn btn-green btn-mini" href="javascript:{}" onclick="form.submit();
+            <a class="btn btn-success" href="javascript:{}" onclick="form.submit();
                     return true;"class="btn green">
-                <i class="entypo-pencil"></i> Editar
+                <i class="fa fa-save"></i> Editar
             </a>
-            <a class="btn btn-red btn-mini" href="{{ path('GEA_SoporteBundle_Perfil_list') }}" class="btn red">
-                <i class="entypo-ccw"></i> Regresar
+            <a class="btn btn-danger" href="{{ path('GEA_SoporteBundle_Perfil_list') }}" class="btn red">
+                <i class="fa fa-undo"></i> Regresar
             </a>
         </div>
     </div>
 </form>
-</div>
-</div>
+</div><!-- /.box -->
 {%endblock%}

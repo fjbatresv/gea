@@ -54,10 +54,11 @@ class UsuarioTableMap extends TableMap
         $this->addColumn('ultimo_cambio_password', 'UltimoCambioPassword', 'DATE', false, null, null);
         $this->addForeignKey('estado_usuario_id', 'EstadoUsuarioId', 'INTEGER', 'estado_usuario', 'id', true, null, null);
         $this->addColumn('record_password', 'RecordPassword', 'LONGVARCHAR', false, null, null);
+        $this->addColumn('avatar', 'Avatar', 'LONGVARCHAR', false, null, null);
         $this->addColumn('created_by', 'CreatedBy', 'VARCHAR', false, 50, null);
         $this->addColumn('updated_by', 'UpdatedBy', 'VARCHAR', false, 50, null);
-        $this->addColumn('created_at', 'CreatedAt', 'TIMESTAMP', true, null, null);
-        $this->addColumn('updated_at', 'UpdatedAt', 'TIMESTAMP', true, null, null);
+        $this->addColumn('created_at', 'CreatedAt', 'TIMESTAMP', false, null, null);
+        $this->addColumn('updated_at', 'UpdatedAt', 'TIMESTAMP', false, null, null);
         // validators
     } // initialize()
 

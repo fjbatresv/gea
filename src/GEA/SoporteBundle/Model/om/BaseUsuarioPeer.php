@@ -31,13 +31,13 @@ abstract class BaseUsuarioPeer
     const TM_CLASS = 'GEA\\SoporteBundle\\Model\\map\\UsuarioTableMap';
 
     /** The total number of columns. */
-    const NUM_COLUMNS = 16;
+    const NUM_COLUMNS = 17;
 
     /** The number of lazy-loaded columns. */
     const NUM_LAZY_LOAD_COLUMNS = 0;
 
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-    const NUM_HYDRATE_COLUMNS = 16;
+    const NUM_HYDRATE_COLUMNS = 17;
 
     /** the column name for the id field */
     const ID = 'usuario.id';
@@ -75,6 +75,9 @@ abstract class BaseUsuarioPeer
     /** the column name for the record_password field */
     const RECORD_PASSWORD = 'usuario.record_password';
 
+    /** the column name for the avatar field */
+    const AVATAR = 'usuario.avatar';
+
     /** the column name for the created_by field */
     const CREATED_BY = 'usuario.created_by';
 
@@ -106,12 +109,12 @@ abstract class BaseUsuarioPeer
      * e.g. UsuarioPeer::$fieldNames[UsuarioPeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('Id', 'Nombre', 'Email', 'Salt', 'Apellido', 'Username', 'Password', 'Direccion', 'FechaNacimiento', 'UltimoCambioPassword', 'EstadoUsuarioId', 'RecordPassword', 'CreatedBy', 'UpdatedBy', 'CreatedAt', 'UpdatedAt', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'nombre', 'email', 'salt', 'apellido', 'username', 'password', 'direccion', 'fechaNacimiento', 'ultimoCambioPassword', 'estadoUsuarioId', 'recordPassword', 'createdBy', 'updatedBy', 'createdAt', 'updatedAt', ),
-        BasePeer::TYPE_COLNAME => array (UsuarioPeer::ID, UsuarioPeer::NOMBRE, UsuarioPeer::EMAIL, UsuarioPeer::SALT, UsuarioPeer::APELLIDO, UsuarioPeer::USERNAME, UsuarioPeer::PASSWORD, UsuarioPeer::DIRECCION, UsuarioPeer::FECHA_NACIMIENTO, UsuarioPeer::ULTIMO_CAMBIO_PASSWORD, UsuarioPeer::ESTADO_USUARIO_ID, UsuarioPeer::RECORD_PASSWORD, UsuarioPeer::CREATED_BY, UsuarioPeer::UPDATED_BY, UsuarioPeer::CREATED_AT, UsuarioPeer::UPDATED_AT, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'NOMBRE', 'EMAIL', 'SALT', 'APELLIDO', 'USERNAME', 'PASSWORD', 'DIRECCION', 'FECHA_NACIMIENTO', 'ULTIMO_CAMBIO_PASSWORD', 'ESTADO_USUARIO_ID', 'RECORD_PASSWORD', 'CREATED_BY', 'UPDATED_BY', 'CREATED_AT', 'UPDATED_AT', ),
-        BasePeer::TYPE_FIELDNAME => array ('id', 'nombre', 'email', 'salt', 'apellido', 'username', 'password', 'direccion', 'fecha_nacimiento', 'ultimo_cambio_password', 'estado_usuario_id', 'record_password', 'created_by', 'updated_by', 'created_at', 'updated_at', ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, )
+        BasePeer::TYPE_PHPNAME => array ('Id', 'Nombre', 'Email', 'Salt', 'Apellido', 'Username', 'Password', 'Direccion', 'FechaNacimiento', 'UltimoCambioPassword', 'EstadoUsuarioId', 'RecordPassword', 'Avatar', 'CreatedBy', 'UpdatedBy', 'CreatedAt', 'UpdatedAt', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'nombre', 'email', 'salt', 'apellido', 'username', 'password', 'direccion', 'fechaNacimiento', 'ultimoCambioPassword', 'estadoUsuarioId', 'recordPassword', 'avatar', 'createdBy', 'updatedBy', 'createdAt', 'updatedAt', ),
+        BasePeer::TYPE_COLNAME => array (UsuarioPeer::ID, UsuarioPeer::NOMBRE, UsuarioPeer::EMAIL, UsuarioPeer::SALT, UsuarioPeer::APELLIDO, UsuarioPeer::USERNAME, UsuarioPeer::PASSWORD, UsuarioPeer::DIRECCION, UsuarioPeer::FECHA_NACIMIENTO, UsuarioPeer::ULTIMO_CAMBIO_PASSWORD, UsuarioPeer::ESTADO_USUARIO_ID, UsuarioPeer::RECORD_PASSWORD, UsuarioPeer::AVATAR, UsuarioPeer::CREATED_BY, UsuarioPeer::UPDATED_BY, UsuarioPeer::CREATED_AT, UsuarioPeer::UPDATED_AT, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'NOMBRE', 'EMAIL', 'SALT', 'APELLIDO', 'USERNAME', 'PASSWORD', 'DIRECCION', 'FECHA_NACIMIENTO', 'ULTIMO_CAMBIO_PASSWORD', 'ESTADO_USUARIO_ID', 'RECORD_PASSWORD', 'AVATAR', 'CREATED_BY', 'UPDATED_BY', 'CREATED_AT', 'UPDATED_AT', ),
+        BasePeer::TYPE_FIELDNAME => array ('id', 'nombre', 'email', 'salt', 'apellido', 'username', 'password', 'direccion', 'fecha_nacimiento', 'ultimo_cambio_password', 'estado_usuario_id', 'record_password', 'avatar', 'created_by', 'updated_by', 'created_at', 'updated_at', ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, )
     );
 
     /**
@@ -121,12 +124,12 @@ abstract class BaseUsuarioPeer
      * e.g. UsuarioPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Nombre' => 1, 'Email' => 2, 'Salt' => 3, 'Apellido' => 4, 'Username' => 5, 'Password' => 6, 'Direccion' => 7, 'FechaNacimiento' => 8, 'UltimoCambioPassword' => 9, 'EstadoUsuarioId' => 10, 'RecordPassword' => 11, 'CreatedBy' => 12, 'UpdatedBy' => 13, 'CreatedAt' => 14, 'UpdatedAt' => 15, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'nombre' => 1, 'email' => 2, 'salt' => 3, 'apellido' => 4, 'username' => 5, 'password' => 6, 'direccion' => 7, 'fechaNacimiento' => 8, 'ultimoCambioPassword' => 9, 'estadoUsuarioId' => 10, 'recordPassword' => 11, 'createdBy' => 12, 'updatedBy' => 13, 'createdAt' => 14, 'updatedAt' => 15, ),
-        BasePeer::TYPE_COLNAME => array (UsuarioPeer::ID => 0, UsuarioPeer::NOMBRE => 1, UsuarioPeer::EMAIL => 2, UsuarioPeer::SALT => 3, UsuarioPeer::APELLIDO => 4, UsuarioPeer::USERNAME => 5, UsuarioPeer::PASSWORD => 6, UsuarioPeer::DIRECCION => 7, UsuarioPeer::FECHA_NACIMIENTO => 8, UsuarioPeer::ULTIMO_CAMBIO_PASSWORD => 9, UsuarioPeer::ESTADO_USUARIO_ID => 10, UsuarioPeer::RECORD_PASSWORD => 11, UsuarioPeer::CREATED_BY => 12, UsuarioPeer::UPDATED_BY => 13, UsuarioPeer::CREATED_AT => 14, UsuarioPeer::UPDATED_AT => 15, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'NOMBRE' => 1, 'EMAIL' => 2, 'SALT' => 3, 'APELLIDO' => 4, 'USERNAME' => 5, 'PASSWORD' => 6, 'DIRECCION' => 7, 'FECHA_NACIMIENTO' => 8, 'ULTIMO_CAMBIO_PASSWORD' => 9, 'ESTADO_USUARIO_ID' => 10, 'RECORD_PASSWORD' => 11, 'CREATED_BY' => 12, 'UPDATED_BY' => 13, 'CREATED_AT' => 14, 'UPDATED_AT' => 15, ),
-        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'nombre' => 1, 'email' => 2, 'salt' => 3, 'apellido' => 4, 'username' => 5, 'password' => 6, 'direccion' => 7, 'fecha_nacimiento' => 8, 'ultimo_cambio_password' => 9, 'estado_usuario_id' => 10, 'record_password' => 11, 'created_by' => 12, 'updated_by' => 13, 'created_at' => 14, 'updated_at' => 15, ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, )
+        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Nombre' => 1, 'Email' => 2, 'Salt' => 3, 'Apellido' => 4, 'Username' => 5, 'Password' => 6, 'Direccion' => 7, 'FechaNacimiento' => 8, 'UltimoCambioPassword' => 9, 'EstadoUsuarioId' => 10, 'RecordPassword' => 11, 'Avatar' => 12, 'CreatedBy' => 13, 'UpdatedBy' => 14, 'CreatedAt' => 15, 'UpdatedAt' => 16, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'nombre' => 1, 'email' => 2, 'salt' => 3, 'apellido' => 4, 'username' => 5, 'password' => 6, 'direccion' => 7, 'fechaNacimiento' => 8, 'ultimoCambioPassword' => 9, 'estadoUsuarioId' => 10, 'recordPassword' => 11, 'avatar' => 12, 'createdBy' => 13, 'updatedBy' => 14, 'createdAt' => 15, 'updatedAt' => 16, ),
+        BasePeer::TYPE_COLNAME => array (UsuarioPeer::ID => 0, UsuarioPeer::NOMBRE => 1, UsuarioPeer::EMAIL => 2, UsuarioPeer::SALT => 3, UsuarioPeer::APELLIDO => 4, UsuarioPeer::USERNAME => 5, UsuarioPeer::PASSWORD => 6, UsuarioPeer::DIRECCION => 7, UsuarioPeer::FECHA_NACIMIENTO => 8, UsuarioPeer::ULTIMO_CAMBIO_PASSWORD => 9, UsuarioPeer::ESTADO_USUARIO_ID => 10, UsuarioPeer::RECORD_PASSWORD => 11, UsuarioPeer::AVATAR => 12, UsuarioPeer::CREATED_BY => 13, UsuarioPeer::UPDATED_BY => 14, UsuarioPeer::CREATED_AT => 15, UsuarioPeer::UPDATED_AT => 16, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'NOMBRE' => 1, 'EMAIL' => 2, 'SALT' => 3, 'APELLIDO' => 4, 'USERNAME' => 5, 'PASSWORD' => 6, 'DIRECCION' => 7, 'FECHA_NACIMIENTO' => 8, 'ULTIMO_CAMBIO_PASSWORD' => 9, 'ESTADO_USUARIO_ID' => 10, 'RECORD_PASSWORD' => 11, 'AVATAR' => 12, 'CREATED_BY' => 13, 'UPDATED_BY' => 14, 'CREATED_AT' => 15, 'UPDATED_AT' => 16, ),
+        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'nombre' => 1, 'email' => 2, 'salt' => 3, 'apellido' => 4, 'username' => 5, 'password' => 6, 'direccion' => 7, 'fecha_nacimiento' => 8, 'ultimo_cambio_password' => 9, 'estado_usuario_id' => 10, 'record_password' => 11, 'avatar' => 12, 'created_by' => 13, 'updated_by' => 14, 'created_at' => 15, 'updated_at' => 16, ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, )
     );
 
     /**
@@ -212,6 +215,7 @@ abstract class BaseUsuarioPeer
             $criteria->addSelectColumn(UsuarioPeer::ULTIMO_CAMBIO_PASSWORD);
             $criteria->addSelectColumn(UsuarioPeer::ESTADO_USUARIO_ID);
             $criteria->addSelectColumn(UsuarioPeer::RECORD_PASSWORD);
+            $criteria->addSelectColumn(UsuarioPeer::AVATAR);
             $criteria->addSelectColumn(UsuarioPeer::CREATED_BY);
             $criteria->addSelectColumn(UsuarioPeer::UPDATED_BY);
             $criteria->addSelectColumn(UsuarioPeer::CREATED_AT);
@@ -229,6 +233,7 @@ abstract class BaseUsuarioPeer
             $criteria->addSelectColumn($alias . '.ultimo_cambio_password');
             $criteria->addSelectColumn($alias . '.estado_usuario_id');
             $criteria->addSelectColumn($alias . '.record_password');
+            $criteria->addSelectColumn($alias . '.avatar');
             $criteria->addSelectColumn($alias . '.created_by');
             $criteria->addSelectColumn($alias . '.updated_by');
             $criteria->addSelectColumn($alias . '.created_at');

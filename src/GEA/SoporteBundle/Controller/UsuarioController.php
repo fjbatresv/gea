@@ -2,6 +2,7 @@
 
 namespace GEA\SoporteBundle\Controller;
 
+use GEA\SoporteBundle\Form\Type\Usuario\PerfilUsuarioType;
 use GEA\SoporteBundle\Form\Type\Usuario\UsuarioPerfilType;
 use GEA\SoporteBundle\Model\PerfilQuery;
 use GEA\SoporteBundle\Model\UsuarioPerfil;
@@ -18,6 +19,58 @@ use Symfony\Component\HttpFoundation\Request;
  * @author javier
  */
 class UsuarioController extends Controller {
+
+    public function perfilAction(Request $request) {
+        $Usuario = UsuarioQuery::create()
+                ->findOneById($this->getUser()->getId());
+        $form = $this->createForm(new PerfilUsuarioType());
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $valores = $form->getData();
+            $Usuario->setFechaNacimiento(strtotime($valores['fecha_nacimiento']));
+            $Usuario->setNombre($valores['nombre']);
+            $Usuario->setApellido($valores['apellido']);
+            $Usuario->setEmail($valores['email']);
+            $Usuario->setDireccion($valores['direccion']);
+            if ($valores['clave']) {
+                if ((ereg_replace("[^0-9]", "", $valores['clave']) && ereg_replace("[0-9]", "", $valores['clave']))) {
+                    $Usuario->setPassword(hash('sha1', $valores['clave']));
+                }
+            }
+            if ($valores['avatar']) {
+                if ($Usuario->getAvatar() && file_exists($Usuario->getAvatar())) {
+                    unlink($Usuario->getAvatar());
+                }
+                $ext = end((explode(".", $valores['avatar']->getClientOriginalName())));
+                $nombre = $valores['avatar']->getClientOriginalName();
+                $archivo = hash('sha1', $nombre . date('Y-m-d_H:i:s') . uniqid()) . '.' . $ext;
+                $valores['avatar']->move('usuarios/avatares/'
+                        , $archivo);
+                $Usuario->setAvatar('usuarios/avatares/' . $archivo);
+            }
+            $Usuario->save();
+            $this->get('session')->getFlashBag()->add('notificaciones', array(
+                'mostrar' => true,
+                'mensaje' => 'Tu perfil se ha actulizado exitosamente',
+                'titulo' => 'Perfil modificado',
+                'estado' => 'success'
+            ));
+        }
+        if (!$form->getData()) {
+            $form['nombre']->setData($Usuario->getNombre());
+            $form['apellido']->setData($Usuario->getApellido());
+            $form['direccion']->setData($Usuario->getDireccion());
+            $form['email']->setData($Usuario->getEmail());
+            if ($Usuario->getFechaNacimiento()) {
+                $form['fecha_nacimiento']->setData($Usuario->getFechaNacimiento()->format('Y-m-d'));
+            }
+        }
+        return $this->render('GEASoporteBundle:Usuario:perfil.html.twig', array(
+            'form' => $form->createView(),
+            'usuario' => $Usuario
+        ));
+    }
+
     public function editarPerfilAction(Request $request) {
         $usuarioActual = $request->get('pk');
         $error = '';
@@ -90,4 +143,5 @@ class UsuarioController extends Controller {
                     'error' => $error, 'pk' => $request->get('pk')
         ));
     }
+
 }

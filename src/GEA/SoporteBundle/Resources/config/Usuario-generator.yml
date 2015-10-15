@@ -13,6 +13,8 @@ params:
                 attr:
                     class: "datepicker"
                     data-format: "yyyy-mm-dd"
+        EstadoUsuario:
+            label: Estado
     object_actions:
         delete: ~
     batch_actions:
@@ -28,6 +30,7 @@ builders:
                 edit: ~
                 perfiles:
                     route: editar_perfiles_usuario
+                    icon: fa fa-sitemap
                 delete: ~
     excel:
         params: ~
@@ -35,7 +38,7 @@ builders:
         filetype: ~
     filters:
         params:
-            display: ~
+            display: [nombre, apellido, username, email, direccion, EstadoUsuario]
     new:
         params:
             title: Nuevo usuario

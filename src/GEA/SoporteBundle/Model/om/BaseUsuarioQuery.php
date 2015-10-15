@@ -32,6 +32,7 @@ use GEA\SoporteBundle\Model\UsuarioQuery;
  * @method UsuarioQuery orderByUltimoCambioPassword($order = Criteria::ASC) Order by the ultimo_cambio_password column
  * @method UsuarioQuery orderByEstadoUsuarioId($order = Criteria::ASC) Order by the estado_usuario_id column
  * @method UsuarioQuery orderByRecordPassword($order = Criteria::ASC) Order by the record_password column
+ * @method UsuarioQuery orderByAvatar($order = Criteria::ASC) Order by the avatar column
  * @method UsuarioQuery orderByCreatedBy($order = Criteria::ASC) Order by the created_by column
  * @method UsuarioQuery orderByUpdatedBy($order = Criteria::ASC) Order by the updated_by column
  * @method UsuarioQuery orderByCreatedAt($order = Criteria::ASC) Order by the created_at column
@@ -49,6 +50,7 @@ use GEA\SoporteBundle\Model\UsuarioQuery;
  * @method UsuarioQuery groupByUltimoCambioPassword() Group by the ultimo_cambio_password column
  * @method UsuarioQuery groupByEstadoUsuarioId() Group by the estado_usuario_id column
  * @method UsuarioQuery groupByRecordPassword() Group by the record_password column
+ * @method UsuarioQuery groupByAvatar() Group by the avatar column
  * @method UsuarioQuery groupByCreatedBy() Group by the created_by column
  * @method UsuarioQuery groupByUpdatedBy() Group by the updated_by column
  * @method UsuarioQuery groupByCreatedAt() Group by the created_at column
@@ -84,6 +86,7 @@ use GEA\SoporteBundle\Model\UsuarioQuery;
  * @method Usuario findOneByUltimoCambioPassword(string $ultimo_cambio_password) Return the first Usuario filtered by the ultimo_cambio_password column
  * @method Usuario findOneByEstadoUsuarioId(int $estado_usuario_id) Return the first Usuario filtered by the estado_usuario_id column
  * @method Usuario findOneByRecordPassword(string $record_password) Return the first Usuario filtered by the record_password column
+ * @method Usuario findOneByAvatar(string $avatar) Return the first Usuario filtered by the avatar column
  * @method Usuario findOneByCreatedBy(string $created_by) Return the first Usuario filtered by the created_by column
  * @method Usuario findOneByUpdatedBy(string $updated_by) Return the first Usuario filtered by the updated_by column
  * @method Usuario findOneByCreatedAt(string $created_at) Return the first Usuario filtered by the created_at column
@@ -101,6 +104,7 @@ use GEA\SoporteBundle\Model\UsuarioQuery;
  * @method array findByUltimoCambioPassword(string $ultimo_cambio_password) Return Usuario objects filtered by the ultimo_cambio_password column
  * @method array findByEstadoUsuarioId(int $estado_usuario_id) Return Usuario objects filtered by the estado_usuario_id column
  * @method array findByRecordPassword(string $record_password) Return Usuario objects filtered by the record_password column
+ * @method array findByAvatar(string $avatar) Return Usuario objects filtered by the avatar column
  * @method array findByCreatedBy(string $created_by) Return Usuario objects filtered by the created_by column
  * @method array findByUpdatedBy(string $updated_by) Return Usuario objects filtered by the updated_by column
  * @method array findByCreatedAt(string $created_at) Return Usuario objects filtered by the created_at column
@@ -210,7 +214,7 @@ abstract class BaseUsuarioQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `nombre`, `email`, `salt`, `apellido`, `username`, `password`, `direccion`, `fecha_nacimiento`, `ultimo_cambio_password`, `estado_usuario_id`, `record_password`, `created_by`, `updated_by`, `created_at`, `updated_at` FROM `usuario` WHERE `id` = :p0';
+        $sql = 'SELECT `id`, `nombre`, `email`, `salt`, `apellido`, `username`, `password`, `direccion`, `fecha_nacimiento`, `ultimo_cambio_password`, `estado_usuario_id`, `record_password`, `avatar`, `created_by`, `updated_by`, `created_at`, `updated_at` FROM `usuario` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -701,6 +705,35 @@ abstract class BaseUsuarioQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(UsuarioPeer::RECORD_PASSWORD, $recordPassword, $comparison);
+    }
+
+    /**
+     * Filter the query on the avatar column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByAvatar('fooValue');   // WHERE avatar = 'fooValue'
+     * $query->filterByAvatar('%fooValue%'); // WHERE avatar LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $avatar The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return UsuarioQuery The current query, for fluid interface
+     */
+    public function filterByAvatar($avatar = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($avatar)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $avatar)) {
+                $avatar = str_replace('*', '%', $avatar);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(UsuarioPeer::AVATAR, $avatar, $comparison);
     }
 
     /**

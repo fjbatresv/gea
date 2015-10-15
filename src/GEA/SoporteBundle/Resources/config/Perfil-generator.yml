@@ -19,9 +19,10 @@ builders:
                 new: ~
             object_actions:
                 edit: ~
-                delete: ~
                 menus:
                     route: menu_perfil
+                    icon: fa fa-bars
+                delete: ~
     excel:
         params: ~
         filename: ~

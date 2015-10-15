@@ -23,9 +23,7 @@
         <h3 class="box-title">{{- block('title') -}}</h3>
     </div><!-- /.box-header -->
     <!-- form start -->
-    <form role="form">
         {{- block('object_actions') -}}
         {{ echo_include(builder.namespacePrefixForTemplate ~ bundle_name ~ ':' ~ builder.BaseGeneratorName ~ (builder.yamlKey | capitalize) ~ ':form.html.twig') }}
-    </form>
 </div><!-- /.box -->
 {{ echo_endblock() }}

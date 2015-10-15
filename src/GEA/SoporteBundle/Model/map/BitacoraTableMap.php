@@ -54,8 +54,8 @@ class BitacoraTableMap extends TableMap
         $this->addColumn('estado', 'Estado', 'INTEGER', true, null, null);
         $this->addColumn('created_by', 'CreatedBy', 'VARCHAR', false, 50, null);
         $this->addColumn('updated_by', 'UpdatedBy', 'VARCHAR', false, 50, null);
-        $this->addColumn('created_at', 'CreatedAt', 'TIMESTAMP', true, null, null);
-        $this->addColumn('updated_at', 'UpdatedAt', 'TIMESTAMP', true, null, null);
+        $this->addColumn('created_at', 'CreatedAt', 'TIMESTAMP', false, null, null);
+        $this->addColumn('updated_at', 'UpdatedAt', 'TIMESTAMP', false, null, null);
         // validators
     } // initialize()
 

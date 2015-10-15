@@ -22,10 +22,10 @@ class PerfilController extends Controller {
         $form = $this->createForm(new PerfilMenuType());
         $form->handleRequest($request);
         $menus = MenuQuery::create()->where('mostrar = 1')->find();
+        $perfil = PerfilQuery::create()
+                ->findOneById($request->get('pk'));
         if ($form->isValid()) {
             $valores = $form->getData();
-            $perfil = PerfilQuery::create()
-                    ->findOneById($request->get('pk'));
             PerfilMenuQuery::create()
                     ->filterByPerfilId($perfil->getId())
                     ->find()
@@ -61,7 +61,7 @@ class PerfilController extends Controller {
         return $this->render('GEASoporteBundle:Perfil:menuPerfil.html.twig', array(
                     'form' => $form->createView(),
                     'menus' => $menus,
-                    'pk' => $request->get('pk')
+                    'perfil' => $perfil
         ));
     }
 

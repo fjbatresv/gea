@@ -35,7 +35,6 @@ class EditController extends BaseEditController {
              $form['fecha_nacimiento']->setData($Usuario->getFechaNacimiento()->format('Y-m-d'));   
             }
         }
-
         return $this->render('GEASoporteBundle:UsuarioEdit:index.html.twig', $this->getAdditionalRenderParameters($Usuario) + array(
                     "Usuario" => $Usuario,
                     "form" => $form->createView(),
@@ -102,7 +101,6 @@ class EditController extends BaseEditController {
 
     public function preSave(Form $form, Usuario $Usuario) {
         $valores = $form->getData();
-
         $Usuario->setFechaNacimiento(strtotime($valores['fecha_nacimiento']));
         $Usuario->setNombre($valores['nombre']);
         $Usuario->setApellido($valores['apellido']);

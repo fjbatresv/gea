@@ -119,6 +119,12 @@ abstract class BaseUsuario extends BaseObject implements Persistent
     protected $record_password;
 
     /**
+     * The value for the avatar field.
+     * @var        string
+     */
+    protected $avatar;
+
+    /**
      * The value for the created_by field.
      * @var        string
      */
@@ -379,6 +385,17 @@ abstract class BaseUsuario extends BaseObject implements Persistent
     {
 
         return $this->record_password;
+    }
+
+    /**
+     * Get the [avatar] column value.
+     *
+     * @return string
+     */
+    public function getAvatar()
+    {
+
+        return $this->avatar;
     }
 
     /**
@@ -744,6 +761,27 @@ abstract class BaseUsuario extends BaseObject implements Persistent
     } // setRecordPassword()
 
     /**
+     * Set the value of [avatar] column.
+     *
+     * @param  string $v new value
+     * @return Usuario The current object (for fluent API support)
+     */
+    public function setAvatar($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->avatar !== $v) {
+            $this->avatar = $v;
+            $this->modifiedColumns[] = UsuarioPeer::AVATAR;
+        }
+
+
+        return $this;
+    } // setAvatar()
+
+    /**
      * Set the value of [created_by] column.
      *
      * @param  string $v new value
@@ -875,10 +913,11 @@ abstract class BaseUsuario extends BaseObject implements Persistent
             $this->ultimo_cambio_password = ($row[$startcol + 9] !== null) ? (string) $row[$startcol + 9] : null;
             $this->estado_usuario_id = ($row[$startcol + 10] !== null) ? (int) $row[$startcol + 10] : null;
             $this->record_password = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
-            $this->created_by = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
-            $this->updated_by = ($row[$startcol + 13] !== null) ? (string) $row[$startcol + 13] : null;
-            $this->created_at = ($row[$startcol + 14] !== null) ? (string) $row[$startcol + 14] : null;
-            $this->updated_at = ($row[$startcol + 15] !== null) ? (string) $row[$startcol + 15] : null;
+            $this->avatar = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
+            $this->created_by = ($row[$startcol + 13] !== null) ? (string) $row[$startcol + 13] : null;
+            $this->updated_by = ($row[$startcol + 14] !== null) ? (string) $row[$startcol + 14] : null;
+            $this->created_at = ($row[$startcol + 15] !== null) ? (string) $row[$startcol + 15] : null;
+            $this->updated_at = ($row[$startcol + 16] !== null) ? (string) $row[$startcol + 16] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -888,7 +927,7 @@ abstract class BaseUsuario extends BaseObject implements Persistent
             }
             $this->postHydrate($row, $startcol, $rehydrate);
 
-            return $startcol + 16; // 16 = UsuarioPeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 17; // 17 = UsuarioPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating Usuario object", $e);
@@ -1202,6 +1241,9 @@ abstract class BaseUsuario extends BaseObject implements Persistent
         if ($this->isColumnModified(UsuarioPeer::RECORD_PASSWORD)) {
             $modifiedColumns[':p' . $index++]  = '`record_password`';
         }
+        if ($this->isColumnModified(UsuarioPeer::AVATAR)) {
+            $modifiedColumns[':p' . $index++]  = '`avatar`';
+        }
         if ($this->isColumnModified(UsuarioPeer::CREATED_BY)) {
             $modifiedColumns[':p' . $index++]  = '`created_by`';
         }
@@ -1260,6 +1302,9 @@ abstract class BaseUsuario extends BaseObject implements Persistent
                         break;
                     case '`record_password`':
                         $stmt->bindValue($identifier, $this->record_password, PDO::PARAM_STR);
+                        break;
+                    case '`avatar`':
+                        $stmt->bindValue($identifier, $this->avatar, PDO::PARAM_STR);
                         break;
                     case '`created_by`':
                         $stmt->bindValue($identifier, $this->created_by, PDO::PARAM_STR);
@@ -1472,15 +1517,18 @@ abstract class BaseUsuario extends BaseObject implements Persistent
                 return $this->getRecordPassword();
                 break;
             case 12:
-                return $this->getCreatedBy();
+                return $this->getAvatar();
                 break;
             case 13:
-                return $this->getUpdatedBy();
+                return $this->getCreatedBy();
                 break;
             case 14:
-                return $this->getCreatedAt();
+                return $this->getUpdatedBy();
                 break;
             case 15:
+                return $this->getCreatedAt();
+                break;
+            case 16:
                 return $this->getUpdatedAt();
                 break;
             default:
@@ -1524,10 +1572,11 @@ abstract class BaseUsuario extends BaseObject implements Persistent
             $keys[9] => $this->getUltimoCambioPassword(),
             $keys[10] => $this->getEstadoUsuarioId(),
             $keys[11] => $this->getRecordPassword(),
-            $keys[12] => $this->getCreatedBy(),
-            $keys[13] => $this->getUpdatedBy(),
-            $keys[14] => $this->getCreatedAt(),
-            $keys[15] => $this->getUpdatedAt(),
+            $keys[12] => $this->getAvatar(),
+            $keys[13] => $this->getCreatedBy(),
+            $keys[14] => $this->getUpdatedBy(),
+            $keys[15] => $this->getCreatedAt(),
+            $keys[16] => $this->getUpdatedAt(),
         );
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
@@ -1615,15 +1664,18 @@ abstract class BaseUsuario extends BaseObject implements Persistent
                 $this->setRecordPassword($value);
                 break;
             case 12:
-                $this->setCreatedBy($value);
+                $this->setAvatar($value);
                 break;
             case 13:
-                $this->setUpdatedBy($value);
+                $this->setCreatedBy($value);
                 break;
             case 14:
-                $this->setCreatedAt($value);
+                $this->setUpdatedBy($value);
                 break;
             case 15:
+                $this->setCreatedAt($value);
+                break;
+            case 16:
                 $this->setUpdatedAt($value);
                 break;
         } // switch()
@@ -1662,10 +1714,11 @@ abstract class BaseUsuario extends BaseObject implements Persistent
         if (array_key_exists($keys[9], $arr)) $this->setUltimoCambioPassword($arr[$keys[9]]);
         if (array_key_exists($keys[10], $arr)) $this->setEstadoUsuarioId($arr[$keys[10]]);
         if (array_key_exists($keys[11], $arr)) $this->setRecordPassword($arr[$keys[11]]);
-        if (array_key_exists($keys[12], $arr)) $this->setCreatedBy($arr[$keys[12]]);
-        if (array_key_exists($keys[13], $arr)) $this->setUpdatedBy($arr[$keys[13]]);
-        if (array_key_exists($keys[14], $arr)) $this->setCreatedAt($arr[$keys[14]]);
-        if (array_key_exists($keys[15], $arr)) $this->setUpdatedAt($arr[$keys[15]]);
+        if (array_key_exists($keys[12], $arr)) $this->setAvatar($arr[$keys[12]]);
+        if (array_key_exists($keys[13], $arr)) $this->setCreatedBy($arr[$keys[13]]);
+        if (array_key_exists($keys[14], $arr)) $this->setUpdatedBy($arr[$keys[14]]);
+        if (array_key_exists($keys[15], $arr)) $this->setCreatedAt($arr[$keys[15]]);
+        if (array_key_exists($keys[16], $arr)) $this->setUpdatedAt($arr[$keys[16]]);
     }
 
     /**
@@ -1689,6 +1742,7 @@ abstract class BaseUsuario extends BaseObject implements Persistent
         if ($this->isColumnModified(UsuarioPeer::ULTIMO_CAMBIO_PASSWORD)) $criteria->add(UsuarioPeer::ULTIMO_CAMBIO_PASSWORD, $this->ultimo_cambio_password);
         if ($this->isColumnModified(UsuarioPeer::ESTADO_USUARIO_ID)) $criteria->add(UsuarioPeer::ESTADO_USUARIO_ID, $this->estado_usuario_id);
         if ($this->isColumnModified(UsuarioPeer::RECORD_PASSWORD)) $criteria->add(UsuarioPeer::RECORD_PASSWORD, $this->record_password);
+        if ($this->isColumnModified(UsuarioPeer::AVATAR)) $criteria->add(UsuarioPeer::AVATAR, $this->avatar);
         if ($this->isColumnModified(UsuarioPeer::CREATED_BY)) $criteria->add(UsuarioPeer::CREATED_BY, $this->created_by);
         if ($this->isColumnModified(UsuarioPeer::UPDATED_BY)) $criteria->add(UsuarioPeer::UPDATED_BY, $this->updated_by);
         if ($this->isColumnModified(UsuarioPeer::CREATED_AT)) $criteria->add(UsuarioPeer::CREATED_AT, $this->created_at);
@@ -1767,6 +1821,7 @@ abstract class BaseUsuario extends BaseObject implements Persistent
         $copyObj->setUltimoCambioPassword($this->getUltimoCambioPassword());
         $copyObj->setEstadoUsuarioId($this->getEstadoUsuarioId());
         $copyObj->setRecordPassword($this->getRecordPassword());
+        $copyObj->setAvatar($this->getAvatar());
         $copyObj->setCreatedBy($this->getCreatedBy());
         $copyObj->setUpdatedBy($this->getUpdatedBy());
         $copyObj->setCreatedAt($this->getCreatedAt());
@@ -2404,6 +2459,7 @@ abstract class BaseUsuario extends BaseObject implements Persistent
         $this->ultimo_cambio_password = null;
         $this->estado_usuario_id = null;
         $this->record_password = null;
+        $this->avatar = null;
         $this->created_by = null;
         $this->updated_by = null;
         $this->created_at = null;

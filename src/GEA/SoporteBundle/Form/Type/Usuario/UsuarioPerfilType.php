@@ -28,7 +28,7 @@ class UsuarioPerfilType extends BaseAbstractType {
         $builder->add('Perfiles', 'model', array(
             'class' => 'GEA\SoporteBundle\Model\Perfil',
             'property' => 'nombre',
-            'attr' => array('class' => 'select2 select2-offscreen visible', 'multiple' => ''),
+            'attr' => array('class' => 'select2 select2-hidden-accessible', 'multiple' => '', 'style' => 'width: 100%;'),
             'multiple' => 'true',
         ));
     }

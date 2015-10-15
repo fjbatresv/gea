@@ -15,3 +15,7 @@ GEASoporteBundle_admin_javier_soporte_bundle_Usuario:
 editar_perfiles_usuario:
     path: /admin/usuario/perfil/
     defaults: { _controller: GEASoporteBundle:Usuario:editarPerfil }
+    
+usuario_perfil:
+    path: /usuario/perfil/
+    defaults: {_controller: GEASoporteBundle:Usuario:perfil}

@@ -16,7 +16,8 @@
         <column name="fecha_nacimiento" type="timestamp" required="false"/>
         <column name="ultimo_cambio_password" type="date" />
         <column name="estado_usuario_id" type="integer" required="true" />
-        <column name="record_password" type="longvarchar" required="false" />     
+        <column name="record_password" type="longvarchar" required="false" /> 
+        <column name="avatar" type="longvarchar" required="false" />    
         <column name="created_by" type="varchar" size="50" required="false" />
         <column name="updated_by" type="varchar" size="50" required="false" />
         <column name="created_at" type="timestamp" required="false" />
