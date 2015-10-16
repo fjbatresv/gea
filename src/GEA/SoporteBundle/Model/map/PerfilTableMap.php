@@ -44,6 +44,7 @@ class PerfilTableMap extends TableMap
         // columns
         $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
         $this->addColumn('nombre', 'Nombre', 'VARCHAR', true, 45, null);
+        $this->getColumn('nombre', false)->setPrimaryString(true);
         $this->addColumn('descripcion', 'Descripcion', 'VARCHAR', false, 100, null);
         $this->addColumn('created_by', 'CreatedBy', 'VARCHAR', false, 50, null);
         $this->addColumn('updated_by', 'UpdatedBy', 'VARCHAR', false, 50, null);

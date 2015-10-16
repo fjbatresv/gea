@@ -1821,11 +1821,11 @@ abstract class BasePerfil extends BaseObject implements Persistent
     /**
      * return the string representation of this object
      *
-     * @return string
+     * @return string The value of the 'nombre' column
      */
     public function __toString()
     {
-        return (string) $this->exportTo(PerfilPeer::DEFAULT_STRING_FORMAT);
+        return (string) $this->getNombre();
     }
 
     /**

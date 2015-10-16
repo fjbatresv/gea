@@ -2517,11 +2517,11 @@ abstract class BaseUsuario extends BaseObject implements Persistent
     /**
      * return the string representation of this object
      *
-     * @return string
+     * @return string The value of the 'username' column
      */
     public function __toString()
     {
-        return (string) $this->exportTo(UsuarioPeer::DEFAULT_STRING_FORMAT);
+        return (string) $this->getUsername();
     }
 
     /**

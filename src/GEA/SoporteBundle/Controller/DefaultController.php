@@ -14,6 +14,7 @@ class DefaultController extends Controller
 
     public function menuSidebarAction() {
         $menus = MenuQuery::create()
+                ->orderByNombre()
                 ->filterByMostrar(1)
                 ->usePerfilMenuQuery()
                 ->usePerfilQuery()

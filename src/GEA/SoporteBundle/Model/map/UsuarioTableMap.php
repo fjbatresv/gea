@@ -48,6 +48,7 @@ class UsuarioTableMap extends TableMap
         $this->addColumn('salt', 'Salt', 'VARCHAR', false, 255, null);
         $this->addColumn('apellido', 'Apellido', 'VARCHAR', false, 45, null);
         $this->addColumn('username', 'Username', 'VARCHAR', true, 45, null);
+        $this->getColumn('username', false)->setPrimaryString(true);
         $this->addColumn('password', 'Password', 'VARCHAR', true, 45, null);
         $this->addColumn('direccion', 'Direccion', 'VARCHAR', false, 100, null);
         $this->addColumn('fecha_nacimiento', 'FechaNacimiento', 'TIMESTAMP', false, null, null);

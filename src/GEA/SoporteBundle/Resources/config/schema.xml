@@ -3,6 +3,9 @@
     <table name="estado_usuario">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
         <column name="nombre" type="varchar" size="20" required="true" primaryString="true" />
+        <unique>
+            <unique-column name="nombre" />
+        </unique>
     </table>
     <table name="usuario">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
@@ -10,7 +13,7 @@
         <column name="email" type="varchar" size="100" required="true"  />
         <column name="salt" type="varchar" size="255" />
         <column name="apellido" type="varchar" size="45" required="false"  />
-        <column name="username" type="varchar" size="45" required="true"/>
+        <column name="username" type="varchar" size="45" required="true" primaryString="true"/>
         <column name="password" type="varchar" size="45" required="true"/>
         <column name="direccion" type="varchar" size="100" required="false"/>
         <column name="fecha_nacimiento" type="timestamp" required="false"/>
@@ -26,6 +29,9 @@
         <foreign-key foreignTable="estado_usuario">
             <reference local="estado_usuario_id" foreign="id" />
         </foreign-key>
+        <unique>
+            <unique-column name="username" />
+        </unique>
     </table>
     <table name="bitacora">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
@@ -49,7 +55,7 @@
     </table>
     <table name="menu">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
-        <column name="nombre" type="varchar" size="100" required="true"/>
+        <column name="nombre" type="varchar" size="100" required="true" primaryString="true"/>
         <column name="ruta" type="varchar" size="100" required="true"/>
         <column name="superior" type="integer" required="true"/>
         <column name="mostrar" type="integer" size="1" required="true"/>
@@ -78,13 +84,16 @@
     </table>
     <table name="perfil">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
-        <column name="nombre" type="varchar" size="45" required="true"  />
+        <column name="nombre" type="varchar" size="45" required="true" primaryString="true" />
         <column name="descripcion" type="varchar" size="100" required="false"/>
         <column name="created_by" type="varchar" size="50" required="false" />
         <column name="updated_by" type="varchar" size="50" required="false" />
         <column name="created_at" type="timestamp" required="false" />
         <column name="updated_at" type="timestamp" required="false" />
         <behavior name="timestampable" />
+        <unique>
+            <unique-column name="nombre" />
+        </unique>
     </table>
     <table name="usuario_perfil">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />

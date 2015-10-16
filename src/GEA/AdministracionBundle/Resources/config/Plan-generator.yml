@@ -1,0 +1,88 @@
+generator: admingenerator.generator.propel
+params:
+    model: GEA\AdministracionBundle\Model\Plan
+    namespace_prefix: GEA
+    concurrency_lock: ~
+    bundle_name: AdministracionBundle
+    pk_requirement: ~
+    fields:
+        usuarios:
+            addFormOptions:
+                attr:
+                    title: Maximo de usuarios (De no especificar, será sin limite)
+        crear_examenes:
+            addFormOptions:
+                attr:
+                    title: Poder crear examenes y obtener resultados al momento
+        logo_propio:
+            addFormOptions:
+                attr:
+                    title: Poder usar el logo de la empresa
+        quitar_logo:
+            addFormOptions:
+                attr:
+                    title: Quitar por ocmpleto el logo de la aplicación
+        correo_masivo:
+            addFormOptions:
+                attr:
+                    title: Envío de correo masivo
+        correo_propio:
+            addFormOptions:
+                attr:
+                    title: Envío de correo con la cuenta de la empresa
+        precio:
+            addFormOptions:
+                attr:
+                    title: Costo mensual
+    object_actions:
+        delete: ~
+    batch_actions:
+        delete: ~
+builders:
+    list:
+        params:
+            title: Planes de uso
+            display: [nombre]
+            actions:
+                new: ~
+            object_actions:
+                edit: ~
+                delete: ~
+    excel:
+        params: ~
+        filename: ~
+        filetype: ~
+    filters:
+        params:
+            display: ~
+    new:
+        params:
+            title: Nuevo plan de uso
+            display:
+                Datos iniciales: [nombre, Moneda, precio, descripcion]
+                Funcionalidades: [[usuarios, crear_examenes],[logo_propio, quitar_logo], [correo_masivo, correo_info]]
+            actions:
+                save-and-list: ~
+                list: ~
+    edit:
+        params:
+            title: "Editando el plan \"%object%\"|{ %object%: Plan.nombre }|"
+            display:
+                Datos iniciales: [nombre, Moneda, precio, descripcion]
+                Funcionalidades: [[usuarios, crear_examenes],[logo_propio, quitar_logo], [correo_masivo, correo_info]]
+            actions:
+                save-and-list: ~
+                list: ~
+    show:
+        params:
+            title: "You're viewing the object \"%object%\"|{ %object%: Plan.title }|"
+            display: ~
+            actions:
+                list: ~
+                new: ~
+    actions:
+        params:
+            object_actions:
+                delete: ~
+            batch_actions:
+                delete: ~

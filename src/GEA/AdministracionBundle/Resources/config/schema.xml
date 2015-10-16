@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database name="default" namespace="GEA\AdministracionBundle\Model" defaultIdMethod="native">
+    <table name="plan">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+        <column name="nombre" type="varchar" required="true" size="50" primaryString="true" />
+        <column name="descripcion" type="longvarchar" required="false" />   
+        <column name="precio" type="double" required="true" />
+        <column name="usuarios" type="integer" required="false" />
+        <column name="moneda_id" type="integer" required="true" />
+        <column name="logo_propio" type="boolean" default="false" required="true"/>
+        <column name="quitar_logo" type="boolean" default="false" required="true"/>
+        <column name="correo_masivo" type="boolean" default="false" required="true"/>
+        <column name="correo_info" type="boolean" default="false" required="true"/>
+        <column name="crear_examenes" type="boolean" default="false" required="true"/>
+        <column name="created_by" type="varchar" size="50" required="false" />
+        <column name="updated_by" type="varchar" size="50" required="false" />
+        <column name="created_at" type="timestamp" required="false" />
+        <column name="updated_at" type="timestamp" required="false" />
+        <behavior name="timestampable" />
+        <foreign-key foreignTable="moneda">
+            <reference local="moneda_id" foreign="id" />
+        </foreign-key>
+        <unique>
+            <unique-column name="nombre" />
+        </unique>
+    </table>
+    <table name="moneda">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+        <column name="nombre" type="varchar" required="true" size="50" primaryString="true" />
+        <column name="simbolo" type="varchar" required="true" size="5" />   
+        <column name="conversion" type="double" required="false" />
+        <column name="base" type="boolean" default="false" required="true"/>
+        <column name="created_by" type="varchar" size="50" required="false" />
+        <column name="updated_by" type="varchar" size="50" required="false" />
+        <column name="created_at" type="timestamp" required="false" />
+        <column name="updated_at" type="timestamp" required="false" />
+        <behavior name="timestampable" />
+        <unique>
+            <unique-column name="nombre" />
+        </unique>
+    </table>
+</database>

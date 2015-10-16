@@ -44,6 +44,7 @@ class MenuTableMap extends TableMap
         // columns
         $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
         $this->addColumn('nombre', 'Nombre', 'VARCHAR', true, 100, null);
+        $this->getColumn('nombre', false)->setPrimaryString(true);
         $this->addColumn('ruta', 'Ruta', 'VARCHAR', true, 100, null);
         $this->addColumn('superior', 'Superior', 'INTEGER', true, null, null);
         $this->addColumn('mostrar', 'Mostrar', 'INTEGER', true, 1, null);

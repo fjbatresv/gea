@@ -1,4 +1,8 @@
-javier_soporte:
+gea_administracion:
+    resource: "@GEAAdministracionBundle/Resources/config/routing.yml"
+    prefix:   /administracion/
+
+gea_soporte:
     resource: "@GEASoporteBundle/Resources/config/routing.yml"
     prefix:   /soporte/
     

@@ -1,0 +1,8 @@
+GEAAdministracionBundle_admin_gea_administracion_bundle_Moneda:
+    resource: "@GEAAdministracionBundle/Controller/Moneda/"
+    type:     admingenerator
+    prefix:   /catalogo/moneda/
+GEAAdministracionBundle_admin_gea_administracion_bundle_Plan:
+    resource: "@GEAAdministracionBundle/Controller/Plan/"
+    type:     admingenerator
+    prefix:   /catalogo/plan/

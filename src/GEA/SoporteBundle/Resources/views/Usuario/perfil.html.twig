@@ -21,7 +21,7 @@
             <h3 class="box-title">Perfil del usuario "{{ usuario.username }}"</h3>
         </div><!-- /.box-header -->
         <!-- form start -->
-        <form id="form" class="form-horizontal" method="POST" action="{{ path('usuario_perfil') }}">
+        <form id="form" class="form-horizontal" method="POST" {{ form_enctype(form) }} action="{{ path('usuario_perfil') }}">
             <div class="box-body">
                 <div class="form-group">
                     {{ form_label(form.nombre, '', { 'label_attr' : { 'class' : 'col-md-3' } } ) }}

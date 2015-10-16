@@ -1,0 +1,61 @@
+generator: admingenerator.generator.propel
+params:
+    model: GEA\AdministracionBundle\Model\Moneda
+    namespace_prefix: GEA
+    concurrency_lock: ~
+    bundle_name: AdministracionBundle
+    pk_requirement: ~
+    fields:
+        conversion:
+            addFormOptions:
+                required: false
+                attr:
+                    title: "monto * (conversión) = base"
+    object_actions:
+        delete: ~
+    batch_actions:
+        delete: ~
+builders:
+    list:
+        params:
+            title: Monedas o Divisas
+            display: [nombre, simbolo, base]
+            actions:
+                new: ~
+            object_actions:
+                edit: ~
+                delete: ~
+    excel:
+        params: ~
+        filename: ~
+        filetype: ~
+    filters:
+        params:
+            display: [nombre, simbolo, base, conversion]
+    new:
+        params:
+            title: Nueva moneda o divisa
+            display: [nombre, simbolo, base, conversion]
+            actions:
+                save-and-list: ~
+                list: ~
+    edit:
+        params:
+            title: "Editando la moneda \"%object%\"|{ %object%: Moneda.nombre }|"
+            display: [nombre, simbolo, base, conversion]
+            actions:
+                save-and-list: ~
+                list: ~
+    show:
+        params:
+            title: "You're viewing the object \"%object%\"|{ %object%: Moneda.title }|"
+            display: ~
+            actions:
+                list: ~
+                new: ~
+    actions:
+        params:
+            object_actions:
+                delete: ~
+            batch_actions:
+                delete: ~
