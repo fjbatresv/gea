@@ -7,33 +7,19 @@ params:
     pk_requirement: ~
     fields:
         usuarios:
-            addFormOptions:
-                attr:
-                    title: Maximo de usuarios (De no especificar, será sin limite)
+            help: Maximo de usuarios (De no especificar, será sin limite)
         crear_examenes:
-            addFormOptions:
-                attr:
-                    title: Poder crear examenes y obtener resultados al momento
+            help: Poder crear examenes y obtener resultados al momento
         logo_propio:
-            addFormOptions:
-                attr:
-                    title: Poder usar el logo de la empresa
+            help: Poder usar el logo de la empresa
         quitar_logo:
-            addFormOptions:
-                attr:
-                    title: Quitar por ocmpleto el logo de la aplicación
+            help: Quitar por completo el logo de la aplicación
         correo_masivo:
-            addFormOptions:
-                attr:
-                    title: Envío de correo masivo
+            help: Envío de correo masivo
         correo_propio:
-            addFormOptions:
-                attr:
-                    title: Envío de correo con la cuenta de la empresa
+            help: Envío de correo con la cuenta de la empresa
         precio:
-            addFormOptions:
-                attr:
-                    title: Costo mensual
+            help: Costo mensual
     object_actions:
         delete: ~
     batch_actions:

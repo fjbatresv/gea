@@ -3,11 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/javier/NetBeansProjects/Javier/gea/src/GEA/SoporteBundle/Resources/views/Usuario/perfil.html.twig</file>
-            <file>file:/home/javier/NetBeansProjects/Javier/gea/src/GEA/SoporteBundle/Controller/UsuarioController.php</file>
-            <file>file:/home/javier/NetBeansProjects/Javier/gea/src/GEA/SoporteBundle/Form/Type/Usuario/PerfilUsuarioType.php</file>
-            <file>file:/home/javier/NetBeansProjects/Javier/gea/app/Resources/views/base.html.twig</file>
-            <file>file:/home/javier/NetBeansProjects/Javier/gea/src/GEA/SoporteBundle/Resources/config/routing.yml</file>
+            <file>file:/home/javier/NetBeansProjects/Javier/gea/src/GEA/AdministracionBundle/Resources/config/schema.xml</file>
+            <file>file:/home/javier/NetBeansProjects/Javier/gea/src/GEA/AdministracionBundle/Resources/config/Plan-generator.yml</file>
+            <file>file:/home/javier/NetBeansProjects/Javier/gea/src/GEA/SoporteBundle/Resources/config/schema.xml</file>
         </group>
     </open-files>
 </project-private>

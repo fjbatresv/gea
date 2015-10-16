@@ -7,10 +7,7 @@ params:
     pk_requirement: ~
     fields:
         conversion:
-            addFormOptions:
-                required: false
-                attr:
-                    title: "monto * (conversión) = base"
+            help: "monto * (conversión) = base"
     object_actions:
         delete: ~
     batch_actions:

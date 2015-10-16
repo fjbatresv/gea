@@ -18,7 +18,8 @@
                                 <div class="col-md-9" >
                                     {{ echo_twig("form_widget(form['" ~ field ~ "'], {'attr':{'placeholder' : '" ~ field ~ "'}})") }}
                                     <div class="help-block">
-                                        {{ echo_twig("form_errors(form['" ~ field ~ "'])") }}
+                                    {{ builder.columns[field].help }}
+                                        <div class="has-error">{{ echo_twig("form_errors(form['" ~ field ~ "'])") }}</div>
                                     </div>
                                 </div>
                             </div>
